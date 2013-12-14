@@ -6,7 +6,7 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 02:15:29 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/14 08:05:02 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 22:20:33 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,14 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 		// Begin check if key is present in list
 		if (tmp->key == key)
 		{
-			tmp->value = ft_strdup(value);// Change value in keyword or not ?
-			// Check ret of ft_strdup
+			tmp->value = ft_strdup(value);
+			if (!tmp->value)
+			{
+				free(elem);
+				hr_keyword_lstdel(keyword);
+				free(keyword);
+				return (NULL)
+			}
 		}
 		// End
 		tmp = tmp->next;
@@ -46,7 +52,7 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 }
 
 void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
-{
+{ // FUNCTION NOT USED ?
 	t_keyword	current;
 
 	current = keyword;
