@@ -6,7 +6,7 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 02:15:29 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/14 07:38:59 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 08:05:02 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 	if (!elem->value)
 	{
 		free(elem);
-		return (NULL); // ! Retourne un keyword * ! //
+		return (NULL);
 	}
 	elem->key = key;
 	elem->next = NULL;
@@ -31,10 +31,18 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 		return (elem);
 	tmp = keyword;
 	while (tmp->next)
+	{
+		// Begin check if key is present in list
+		if (tmp->key == key)
+		{
+			tmp->value = ft_strdup(value);// Change value in keyword or not ?
+			// Check ret of ft_strdup
+		}
+		// End
 		tmp = tmp->next;
+	}
 	tmp->next = elem;
 	return (elem);
-	// TO DO: Replace value if key is in list
 }
 
 void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
@@ -51,7 +59,7 @@ void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
 			{
 				hr_keyword_lstdel(keyword);
 				free(keyword);
-				return (NULL)
+				return (NULL) // Function return void !? //
 			}
 		}
 		current = current->next;

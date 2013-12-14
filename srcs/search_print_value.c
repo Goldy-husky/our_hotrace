@@ -6,7 +6,7 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 06:33:15 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/14 06:48:30 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 08:05:01 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*hr_key_search(t_keyword *keyword, int key)
 	return (NULL);
 }
 
-void	hr_value_print(t_keyword *keyword) // ++ params ?
+void	hr_value_print(t_keyword *keyword, int key) // ++ params ?
 {
-	
+	// Function which prints value or error if key isn't found.
 }
