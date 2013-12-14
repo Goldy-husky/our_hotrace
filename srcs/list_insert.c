@@ -6,7 +6,7 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 02:15:29 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/14 06:06:53 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 07:38:59 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 	if ((elem = (t_keyword *) malloc(sizeof(t_keyword))) == NULL)
 		return (NULL);
 	elem->value = ft_strdup(value);
-	if (elem->value == NULL)
+	if (!elem->value)
 	{
 		free(elem);
-		return (NULL);
+		return (NULL); // ! Retourne un keyword * ! //
 	}
 	elem->key = key;
 	elem->next = NULL;
-	if (keyword == NULL)
+	if (!keyword)
 		return (elem);
 	tmp = keyword;
-	while (tmp->next != NULL)
+	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = elem;
 	return (elem);
+	// TO DO: Replace value if key is in list
 }
 
 void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
@@ -44,7 +45,15 @@ void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
 	while (current != next)
 	{
 		if (current->key == key)
+		{
 			current->value = ft_strdup(value);
+			if (!current->value)
+			{
+				hr_keyword_lstdel(keyword);
+				free(keyword);
+				return (NULL)
+			}
+		}
 		current = current->next;
 	}
 }
@@ -55,7 +64,7 @@ void		hr_keyword_lstdel(t_keyword *keyword)
 	t_keyword	*next;
 
 	current = keyword;
-	while (current != NULL)
+	while (current)
 	{
 		next = current->next;
 		free(current->value);
