@@ -6,40 +6,32 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 06:03:06 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/14 07:37:16 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 
-unsigned int	hr_rotate(char *str, int rotate)
-{
-	int				i;
-	unsigned int	rtn;
-
-	i = -1;
-	rtn = 1;
-	while (str[++i])
-		rtn += (str[i] << rotate) | (str[i] >> (32 - rotate));
-	return (rtn);
-}
-
-void			hr_parseinput(char *str, int lines, t_keyword *table)
+void	hr_parseinput(char *str, int lines, t_keyword *table)
 {
 	static t_bool		flag = FALSE;
 	static unsigned int	hashx = 0;
 	static unsigned int hashy = 0;
+	size_t				strlen;
+	char				*tmp;
 
-	hashx = (!(lines % 2) || flag) ? hr_crc_32(str, ft_strlen(str)) : hashx;
-	hashy = (!(lines % 2) || flag) ? hr_rotate(str, ROTATE_Y) : hashy;
-	if (!str[0] && !(lines % 2))
+	tmp = ft_
+	strlen = ft_strlen(str);
+	hashx = (!(lines % 2) || flag) ? hr_crc_32(str, strlen, ROTATE_X) : hashx;
+	hashy = (!(lines % 2) || flag) ? hr_crc_32(str, strlen, ROTATE_Y) : hashy;
+	if (!strlen && !(lines % 2))
 		flag = TRUE;
 	if (!flag && !(lines % 2))
 		hr_insert_keyword(table, str, hashx, hashy);
 	if (!flag && (lines % 2))
 		hr_insert_value(table, str, hashx, hashy);
-	if (flag)
-		hr_search(table, hashx, hashy);
+	if (flag && strlen)
+		hr_search(str, table, hashx, hashy);
 }
 
 int				main()
@@ -49,6 +41,8 @@ int				main()
 	int			i;
 
 	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * TABLESIZE);
+	if (hashtable == NULL)
+		return (1);
 	i = 0;
 	while (i < TABLESIZE)
 		hashtable[i++] = NULL;

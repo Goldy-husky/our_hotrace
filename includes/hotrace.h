@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 23:48:37 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 06:06:42 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 07:31:54 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "get_next_line.h"
 
 # define TABLESIZE 263167
-# define ROTATE_X 5
+# define ROTATE_X 0
 # define ROTATE_Y 2
 
 
@@ -46,5 +46,6 @@ typedef uint8_t	t_crc;
 t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value);
 void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value);
 void		hr_keyword_lstdel(t_keyword *keyword);
+
 
 #endif
