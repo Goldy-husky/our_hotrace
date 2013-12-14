@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 04:40:57 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 07:42:16 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 23:51:16 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	hr_crc_init_32(t_crc *table)
 	}
 }
 
-t_crc	hr_crc_32(char *str, int size, int rotate)
+t_hash	hr_crc32(char *str, int size, int rotate, t_bool reduce)
 {
 	static t_bool	flag = FALSE;
 	uint8_t			data;
@@ -50,5 +50,21 @@ t_crc	hr_crc_32(char *str, int size, int rotate)
 			^ (rem >> (WIDTH - 8));
 		rem = table[data] ^ (rem << 8);
 	}
+	if (reduce)
+		return (rem & ((1 << REDUCE) - 1));
 	return (rem);
+}
+
+t_hash		 set_tab_len(int reduce)
+{
+	int 	base;
+	int 	i;
+	t_hash	rtn;
+
+	base = 2;
+	rtn = base;
+	i = 0;
+	while (++i < reduce)
+		rtn *= base;
+	return (rtn);
 }

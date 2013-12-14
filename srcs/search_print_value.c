@@ -6,13 +6,13 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 06:33:15 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/14 22:27:41 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/14 23:51:55 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 
-char	*hr_key_search(t_keyword *keyword, int key)
+char	*hr_key_search(t_keyword *keyword, t_hash key)
 {
 	t_keyword	current;
 
