@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 23:48:37 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 23:51:54 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 00:03:36 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef enum		e_bool
 
 typedef struct		s_keyword
 {
-	unsigned int		key;
+	t_hash				key;
 	char				*value;
 	struct s_keyword	*next;
 }					t_keyword;
