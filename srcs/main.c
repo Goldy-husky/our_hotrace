@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 02:08:35 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/14 06:03:06 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ unsigned int	hr_rotate(char *str, int rotate)
 	i = -1;
 	rtn = 1;
 	while (str[++i])
-		rtn *= (str[i] << rotate) | (str[i] >> (32 - rotate));
-	return (rtn % TABLESIZE);
+		rtn += (str[i] << rotate) | (str[i] >> (32 - rotate));
+	return (rtn);
 }
 
 void			hr_parseinput(char *str, int lines, t_keyword *table)
@@ -30,9 +30,9 @@ void			hr_parseinput(char *str, int lines, t_keyword *table)
 	static unsigned int	hashx = 0;
 	static unsigned int hashy = 0;
 
-	hashx = (!(lines % 2) || flag) ? hr_rotate(str, ROTATE_X) : hashx;
+	hashx = (!(lines % 2) || flag) ? hr_crc_32(str, ft_strlen(str)) : hashx;
 	hashy = (!(lines % 2) || flag) ? hr_rotate(str, ROTATE_Y) : hashy;
-	if (!str[0])
+	if (!str[0] && !(lines % 2))
 		flag = TRUE;
 	if (!flag && !(lines % 2))
 		hr_insert_keyword(table, str, hashx, hashy);
@@ -42,13 +42,16 @@ void			hr_parseinput(char *str, int lines, t_keyword *table)
 		hr_search(table, hashx, hashy);
 }
 
-int	main()
+int				main()
 {
-	t_keyword	*hashtable;
+	t_keyword	**hashtable;
 	char		*str;
 	int			i;
 
-	hashtable = (t_keyword*) malloc(sizeof(t_keyword) * TABLESIZE);
+	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * TABLESIZE);
+	i = 0;
+	while (i < TABLESIZE)
+		hashtable[i++] = NULL;
 	i = 0;
 	while (get_next_line(0, &str) == 1)
 		parseinput(str, i++, hashtable);
