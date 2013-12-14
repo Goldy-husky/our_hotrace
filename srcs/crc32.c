@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 04:40:57 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 07:29:26 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/14 07:42:16 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_crc	hr_crc_32(char *str, int size, int rotate)
 	byte = 0;
 	while (byte < size)
 	{
-		data = ((str[byte] << rotate) | (str[i] >> (32 - rotate))
+		data = ((str[byte] << rotate) | (str[i] >> (32 - rotate)))
 			^ (rem >> (WIDTH - 8));
 		rem = table[data] ^ (rem << 8);
 	}
