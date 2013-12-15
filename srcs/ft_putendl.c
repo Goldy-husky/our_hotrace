@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/03 17:49:13 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/15 00:45:01 by sbethoua         ###   ########.fr       */
+/*   Created: 2013/11/25 14:28:52 by sbethoua          #+#    #+#             */
+/*   Updated: 2013/12/15 01:19:08 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "hotrace.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
+void	ft_putendl(char const *s)
+{
+	write(STDOUT_FILENO, s, ft_strlen(s));
+	write(STDOUT_FILENO, "\n", 1);
+}
 
-# define BUFF_SIZE 1000000
-
-int	get_next_line(int const fd, char **line);
-
-#endif /* !GET_NEXT_LINE_H */
+void	ft_putstr(char const *s)
+{
+	write(STDOUT_FILENO, s, ft_strlen(s));
+}

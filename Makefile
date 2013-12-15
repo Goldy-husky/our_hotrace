@@ -6,7 +6,7 @@
 #    By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 17:18:15 by sbethoua          #+#    #+#              #
-#    Updated: 2013/12/15 00:09:07 by sbethoua         ###   ########.fr        #
+#    Updated: 2013/12/15 00:50:24 by sbethoua         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,16 @@ HEADERFILES = includes/hotrace.h includes/getnextline.h
 SRCSDIR = ./srcs/
 SRCS = $(addprefix $(SRCSDIR), $(SRCSFILES))
 SRCSFILES = crc32.c \
+			ft_putendl.c \
+			ft_strchr.c \
+			ft_strdel.c \
+			ft_strdup.c \
+			ft_strjoin.c \
+			ft_strlen.c \
 			get_next_line.c \
 			list_insert.c \
 			main.c \
-			set_and_find.c \
-			utils.c
+			set_and_find.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

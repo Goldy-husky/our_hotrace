@@ -6,15 +6,15 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 06:30:06 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 23:51:58 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 01:24:39 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 
-char	*hr_key_search(t_keyword *keyword, int key)
+char	*hr_key_search(t_keyword *keyword, t_hash key)
 {
-	t_keyword   current;
+	t_keyword	*current;
 
 	current = keyword;
 	while (current)
@@ -31,24 +31,16 @@ void	hr_print(char *str, char *value)
 	if (!value)
 	{
 		ft_putstr(str);
-		ft_putendl(": Not found.")
+		ft_putendl(": Not found.");
 	}
 	else
 		ft_putendl(value);
 }
 
-void	hr_search(const char *str, t_keyword **hashtable, t_hash x, t_hash y)
+void	hr_search(char *str, t_keyword **table, t_hash x, t_hash y)
 {
-	if (hatshtable[x])
-		hr_print(str, hr_key_search(hatshtable[x], y));
+	if (table[x])
+		hr_print(str, hr_key_search(table[x], y));
 	else
 		hr_print(str, NULL);
-}
-
-int		hr_insert_value(t_keyword **table, t_hash x, t_hash y)
-{
-	t_keyword	*keyword;
-
-	keyword = NULL;
-	table[x] = hr_keyword_lstadd(table[x], y, )
 }

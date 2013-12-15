@@ -6,13 +6,13 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 02:15:29 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/14 23:52:06 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 01:14:27 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 
-t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
+t_keyword	*hr_keyword_lstadd(t_keyword *keyword, t_hash key, char *value)
 {
 	t_keyword	*elem;
 	t_keyword	*tmp;
@@ -35,14 +35,14 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 		// Begin check if key is present in list
 		if (tmp->key == key)
 		{
-			ft_strdel(tmp->value);
+			ft_strdel(&tmp->value);
 			tmp->value = ft_strdup(value);
 			if (!tmp->value)
 			{
 				free(elem);
 				hr_keyword_lstdel(keyword);
 				free(keyword);
-				return (NULL)
+				return (NULL);
 			}
 		}
 		// End
@@ -52,7 +52,8 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, int key, const char *value)
 	return (keyword);
 }
 
-void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
+/*
+void		hr_keyword_lstchg(t_keyword *keyword, t_hash key, const char *value)
 { // FUNCTION NOT USED ?
 	t_keyword	current;
 
@@ -72,6 +73,7 @@ void		hr_keyword_lstchg(t_keyword *keyword, int key, const char *value)
 		current = current->next;
 	}
 }
+*/
 
 void		hr_keyword_lstdel(t_keyword *keyword)
 {

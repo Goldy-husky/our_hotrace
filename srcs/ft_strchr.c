@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/03 17:49:13 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/15 00:45:01 by sbethoua         ###   ########.fr       */
+/*   Created: 2013/11/22 11:50:40 by sbethoua          #+#    #+#             */
+/*   Updated: 2013/12/15 00:43:02 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "hotrace.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	const char	*cpy;
+	size_t		i;
 
-# define BUFF_SIZE 1000000
+	cpy = (const char *) s;
+	i = 0;
+	while (i < n)
+	{
+		if (cpy[i] == (unsigned char) c)
+			return ((void *) &cpy[i]);
+		i++;
+	}
+	return (NULL);
+}
 
-int	get_next_line(int const fd, char **line);
-
-#endif /* !GET_NEXT_LINE_H */
+char	*ft_strchr(const char *s, int c)
+{
+	return (ft_memchr(s, c, ft_strlen(s) + 1));
+}

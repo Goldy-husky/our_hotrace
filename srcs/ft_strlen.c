@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/03 17:49:13 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/15 00:45:01 by sbethoua         ###   ########.fr       */
+/*   Created: 2013/11/19 11:43:12 by sbethoua          #+#    #+#             */
+/*   Updated: 2013/12/15 00:43:32 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "hotrace.h"
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-# define BUFF_SIZE 1000000
-
-int	get_next_line(int const fd, char **line);
-
-#endif /* !GET_NEXT_LINE_H */
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}

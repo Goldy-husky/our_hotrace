@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/14 23:51:57 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 01:16:36 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ int	hr_parseinput(char *str, int lines, t_keyword **table)
 	if (!strlen && !(lines % 2))
 		flag = TRUE;
 	if (!flag && (lines % 2))
-		table[hashx] = hr_keyword_lstadd(table[hashx], str, hashy);
+		table[hashx] = hr_keyword_lstadd(table[hashx], hashy, str);
 	if (flag && strlen)
 		hr_search(str, table, hashx, hashy);
+	return (0);
 }
 
-int	main()
+int	main(void)
 {
 	t_keyword	**hashtable;
 	char		*str;
@@ -44,6 +45,6 @@ int	main()
 		hashtable[i++] = NULL;
 	i = 0;
 	while (get_next_line(0, &str) == 1)
-		parseinput(str, i++, hashtable);
+		hr_parseinput(str, i++, hashtable);
 	return (0);
 }

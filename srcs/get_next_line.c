@@ -6,11 +6,11 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/03 17:49:08 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/09 16:33:43 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 01:09:14 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "hotrace.h"
 
 char	*ft_strextend(char *s1, const char *s2)
 {
@@ -23,7 +23,7 @@ char	*ft_strextend(char *s1, const char *s2)
 	return (str_new);
 }
 
-int		get_next_line_from_stash(char *tmp, char **line, char **stash)
+int		gnl_from_stash(char *tmp, char **line, char **stash)
 {
 	*tmp = '\0';
 	*line = *stash;
@@ -40,7 +40,7 @@ int		get_next_line_from_stash(char *tmp, char **line, char **stash)
 	return (1);
 }
 
-int		get_next_line_from_buf(char *buf, char *tmp, char **line, char **stash)
+int		gnl_from_buf(char *buf, char *tmp, char **line, char **stash)
 {
 	*tmp = '\0';
 	*line = ft_strextend(*stash, buf);
@@ -76,7 +76,7 @@ int		get_next_line(int const fd, char **line)
 	ssize_t		ret;
 
 	if ((stash != NULL) && (tmp = ft_strchr(stash, '\n')))
-		return (get_next_line_from_stash(tmp, line, &stash));
+		return (gnl_from_stash(tmp, line, &stash));
 	while ((ret = read(fd, buf, BUFF_SIZE)))
 	{
 		if (ret == -1)
@@ -87,7 +87,7 @@ int		get_next_line(int const fd, char **line)
 		}
 		buf[ret] = '\0';
 		if ((tmp = ft_strchr(buf, '\n')))
-			return (get_next_line_from_buf(buf, tmp, line, &stash));
+			return (gnl_from_buf(buf, tmp, line, &stash));
 		stash = ft_strextend(stash, buf);
 		if (stash == NULL)
 			return (-1);
