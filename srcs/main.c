@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 09:16:51 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 09:33:02 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	main(void)
 		hashtable[i++] = NULL;
 	i = 0;
 	while (get_next_line(0, &str) == 1)
+	{
 		hr_parseinput(str, i++, hashtable);
+		free(str);
+		str = NULL;
+	}
 	return (0);
 }
