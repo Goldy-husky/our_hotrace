@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 01:16:36 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 02:18:06 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,15 @@ int	main(void)
 {
 	t_keyword	**hashtable;
 	char		*str;
-	int			i;
+	t_hash		i;
+	t_hash		len;
 
-	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * set_tab_len(REDUCE));
+	len = set_tab_len(REDUCE);
+	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * len);
 	if (hashtable == NULL)
 		return (1);
 	i = 0;
-	while (i < TABLESIZE)
+	while (i < len)
 		hashtable[i++] = NULL;
 	i = 0;
 	while (get_next_line(0, &str) == 1)

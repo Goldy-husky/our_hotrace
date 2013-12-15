@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 23:48:37 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 01:25:50 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 02:31:01 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef uint8_t		t_crc;
 # define POLY 0xD8
 # define WIDTH  (8 * sizeof(t_crc))
 # define TOPBIT (1 << (WIDTH - 1))
-# define REDUCE 24
+# define REDUCE 5
 
 void		hr_crc_init_32(t_crc *table);
 t_hash		hr_crc32(char *str, int size, int rotate, t_bool reduce);
@@ -73,8 +73,8 @@ int			gnl_from_buf(char *buf, char *tmp, char **line, char **stash);
 int			get_last_line(char **line, char **stash);
 int			get_next_line(int const fd, char **line);
 
+t_keyword	*hr_chg(t_keyword *kword, t_keyword *tmp, t_hash key, char *value);
 t_keyword	*hr_keyword_lstadd(t_keyword *keyword, t_hash key, char *value);
-//void		hr_keyword_lstchg(t_keyword *keyword, t_hash, const char *value);
 void		hr_keyword_lstdel(t_keyword *keyword);
 
 int			hr_parseinput(char *str, int lines, t_keyword **table);

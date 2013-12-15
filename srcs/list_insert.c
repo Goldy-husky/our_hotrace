@@ -6,11 +6,27 @@
 /*   By: sbethoua <sbethoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 02:15:29 by sbethoua          #+#    #+#             */
-/*   Updated: 2013/12/15 01:14:27 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 02:32:17 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
+
+t_keyword	*hr_chg(t_keyword *kword, t_keyword *tmp, t_hash key, char *value)
+{
+	if (tmp->key == key)
+	{
+		ft_strdel(&tmp->value);
+		tmp->value = ft_strdup(value);
+		if (!tmp->value)
+		{
+			hr_keyword_lstdel(kword);
+			free(kword);
+			return (NULL);
+		}
+	}
+	return (tmp);
+}
 
 t_keyword	*hr_keyword_lstadd(t_keyword *keyword, t_hash key, char *value)
 {
@@ -30,50 +46,15 @@ t_keyword	*hr_keyword_lstadd(t_keyword *keyword, t_hash key, char *value)
 	if (!keyword)
 		return (elem);
 	tmp = keyword;
+	tmp = hr_chg(keyword, tmp, key, value);
 	while (tmp->next)
 	{
-		// Begin check if key is present in list
-		if (tmp->key == key)
-		{
-			ft_strdel(&tmp->value);
-			tmp->value = ft_strdup(value);
-			if (!tmp->value)
-			{
-				free(elem);
-				hr_keyword_lstdel(keyword);
-				free(keyword);
-				return (NULL);
-			}
-		}
-		// End
+		tmp = hr_chg(keyword, tmp, key, value);
 		tmp = tmp->next;
 	}
 	tmp->next = elem;
 	return (keyword);
 }
-
-/*
-void		hr_keyword_lstchg(t_keyword *keyword, t_hash key, const char *value)
-{ // FUNCTION NOT USED ?
-	t_keyword	current;
-
-	current = keyword;
-	while (current != next)
-	{
-		if (current->key == key)
-		{
-			current->value = ft_strdup(value);
-			if (!current->value)
-			{
-				hr_keyword_lstdel(keyword);
-				free(keyword);
-				return (NULL) // Function return void !? //
-			}
-		}
-		current = current->next;
-	}
-}
-*/
 
 void		hr_keyword_lstdel(t_keyword *keyword)
 {
