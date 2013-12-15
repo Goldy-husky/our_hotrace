@@ -6,13 +6,13 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 04:40:57 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 09:15:05 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 10:01:14 by sbethoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 
-void	hr_crc_init_32(t_crc *table)
+void		hr_crc_init_32(t_crc *table)
 {
 	t_crc		rem;
 	int			div;
@@ -29,7 +29,7 @@ void	hr_crc_init_32(t_crc *table)
 	}
 }
 
-t_hash	hr_crc32(const char *str, int size, int shift, t_bool reduce)
+t_hash		hr_crc32(const char *str, int size, int shift, t_bool reduce)
 {
 	static t_bool	flag = FALSE;
 	const char		*tmp;
@@ -53,7 +53,7 @@ t_hash	hr_crc32(const char *str, int size, int shift, t_bool reduce)
 	return (crc ^ ~0U);
 }
 
-uint64_t		 set_tab_len(int reduce)
+uint64_t	 set_tab_len(int reduce)
 {
 	int 		base;
 	int 		i;
