@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 04:40:57 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 02:05:54 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 07:55:22 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ void	hr_crc_init_32(t_crc *table)
 	div = 0;
 	while (div < 256)
 	{
-		rem = div << (WIDTH - 8);
+		rem = div;
 		bit = 8;
 		while (bit-- > 0)
-			rem = (rem & TOPBIT) ? (rem << 1) ^ POLY : (rem << 1);
+			rem = (rem & 1) ? (rem >> 1) ^ POLY : (rem >> 1);
 		table[div++] = rem;
 	}
 }
 
-t_hash	hr_crc32(char *str, int size, int rotate, t_bool reduce)
+t_hash	hr_crc32(t_crc crc, const char *str, int size, int shift)
 {
 	static t_bool	flag = FALSE;
-	uint8_t			data;
-	t_crc			rem;
-	int				byte;
+	const char		*tmp;
 	static t_crc	table[256];
 
 	if (!flag)
@@ -42,18 +40,11 @@ t_hash	hr_crc32(char *str, int size, int rotate, t_bool reduce)
 		hr_crc_init_32(table);
 		flag = TRUE;
 	}
-	rem = 0;
-	byte = 0;
-	while (byte < size)
-	{
-		data = ((str[byte] << rotate) | (str[byte] >> (32 - rotate)))
-			^ (rem >> (WIDTH - 8));
-		rem = table[data] ^ (rem << 8);
-		byte++;
-	}
-	if (reduce)
-		return (rem & ((1 << REDUCE) - 1));
-	return (rem);
+	crc = crc ^ ~0U;
+	tmp = str;
+	while (size--)
+		crc = table[(crc ^ (*tmp++ << shift)) & 0xFF] ^ (crc >> 8);
+	return (crc ^ ~0U);
 }
 
 t_hash		 set_tab_len(int reduce)

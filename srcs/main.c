@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 02:18:06 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 07:54:44 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	hr_parseinput(char *str, int lines, t_keyword **table)
 	size_t			strlen;
 
 	strlen = ft_strlen(str);
-	hashx = (!(lines % 2) || flag) ? hr_crc32(str, strlen, ROTATE_X, 1) : hashx;
-	hashy = (!(lines % 2) || flag) ? hr_crc32(str, strlen, ROTATE_Y, 0) : hashy;
+	hashx = (!(lines % 2) || flag) ? hr_crc32(0, str, strlen, 0) : hashx;
+	hashy = (!(lines % 2) || flag) ? hr_crc32(30, str, strlen, 2) : hashy;
 	if (!strlen && !(lines % 2))
 		flag = TRUE;
 	if (!flag && (lines % 2))
@@ -39,7 +39,7 @@ int	main(void)
 	t_hash		len;
 
 	len = set_tab_len(REDUCE);
-	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * len);
+	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * 4294967296);
 	if (hashtable == NULL)
 		return (1);
 	i = 0;
