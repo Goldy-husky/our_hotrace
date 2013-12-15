@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 23:48:37 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 01:25:50 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 01:43:41 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 # define BUFF_SIZE 100000
 # define TABLESIZE 263167
@@ -47,7 +48,7 @@ typedef uint8_t		t_crc;
 # define POLY 0xD8
 # define WIDTH  (8 * sizeof(t_crc))
 # define TOPBIT (1 << (WIDTH - 1))
-# define REDUCE 24
+# define REDUCE 5
 
 void		hr_crc_init_32(t_crc *table);
 t_hash		hr_crc32(char *str, int size, int rotate, t_bool reduce);

@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 01:16:36 by sbethoua         ###   ########.fr       */
+/*   Updated: 2013/12/15 01:53:37 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@ int	hr_parseinput(char *str, int lines, t_keyword **table)
 	size_t			strlen;
 
 	strlen = ft_strlen(str);
+	
+	printf("%s", str);
+	
 	hashx = (!(lines % 2) || flag) ? hr_crc32(str, strlen, ROTATE_X, 1) : hashx;
 	hashy = (!(lines % 2) || flag) ? hr_crc32(str, strlen, ROTATE_Y, 0) : hashy;
+	
+	printf("%d\n%d\n", hashx, hashy);
+	
 	if (!strlen && !(lines % 2))
 		flag = TRUE;
 	if (!flag && (lines % 2))
@@ -35,16 +41,26 @@ int	main(void)
 {
 	t_keyword	**hashtable;
 	char		*str;
-	int			i;
+	t_hash		i;
+	t_hash		len;
 
-	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * set_tab_len(REDUCE));
+	len = set_tab_len(REDUCE);
+	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * len);
 	if (hashtable == NULL)
 		return (1);
 	i = 0;
-	while (i < TABLESIZE)
+	while (i < len)
+	{
 		hashtable[i++] = NULL;
+	}
 	i = 0;
+	
 	while (get_next_line(0, &str) == 1)
+	{
+		
+		printf("%d", 42);
+		
 		hr_parseinput(str, i++, hashtable);
+	}
 	return (0);
 }
