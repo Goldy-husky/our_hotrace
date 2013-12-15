@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/14 04:40:57 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 08:36:44 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 09:15:05 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ t_hash	hr_crc32(const char *str, int size, int shift, t_bool reduce)
 	return (crc ^ ~0U);
 }
 
-t_hash		 set_tab_len(int reduce)
+uint64_t		 set_tab_len(int reduce)
 {
-	int 	base;
-	int 	i;
-	t_hash	rtn;
+	int 		base;
+	int 		i;
+	uint64_t	rtn;
 
 	base = 2;
 	rtn = base;

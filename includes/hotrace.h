@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 23:48:37 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 09:04:10 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 09:16:07 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 
 # define BUFF_SIZE 1000
-# define TABLESIZE 263167
 # define ROTATE_X 0
 # define ROTATE_Y 2
 
@@ -44,7 +43,7 @@ typedef struct		s_keyword
 
 void		hr_crc_init_32(t_crc *table);
 t_hash		hr_crc32(const char *str, int size, int shift, t_bool reduce);
-t_hash		set_tab_len(int reduce);
+uint64_t	set_tab_len(int reduce);
 
 void		ft_putstr(char const *s);
 void		ft_putendl(char const *s);

@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 08:37:36 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 09:16:51 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(void)
 	t_hash		len;
 
 	len = set_tab_len(REDUCE);
-	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * 4294967296);
+	hashtable = (t_keyword**) malloc(sizeof(t_keyword*) * set_tab_len(REDUCE));
 	if (hashtable == NULL)
 		return (1);
 	i = 0;
