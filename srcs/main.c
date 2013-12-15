@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 22:55:23 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 09:40:12 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 09:42:05 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int	main(void)
 		free(str);
 		str = NULL;
 	}
-	free(hashtable);
+	free(str);
 	return (0);
 }
