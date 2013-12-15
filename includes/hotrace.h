@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/13 23:48:37 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/15 06:46:54 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/15 09:04:10 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ROTATE_Y 2
 
 typedef uint32_t	t_hash;
+typedef uint32_t	t_crc;
 
 typedef enum		e_bool
 {
@@ -38,17 +39,11 @@ typedef struct		s_keyword
 	struct s_keyword	*next;
 }					t_keyword;
 
-
-/*
-** CRC32
-*/
-typedef uint32_t	t_crc;
-
 # define POLY 0xedb88320
-# define REDUCE 32
+# define REDUCE 10
 
 void		hr_crc_init_32(t_crc *table);
-t_hash		hr_crc32(t_crc crc, const char *str, int size, int shift);
+t_hash		hr_crc32(const char *str, int size, int shift, t_bool reduce);
 t_hash		set_tab_len(int reduce);
 
 void		ft_putstr(char const *s);
